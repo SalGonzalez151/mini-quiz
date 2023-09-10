@@ -35,6 +35,8 @@ var questions = [
 
 var score = 0;
 var questionNumber = 0;
+var timeEl = document.querySelector('.time');
+var timeLeft = 60;
 var startBtn = document.querySelector('.start-button');
 var questionText = document.querySelector('.question-text');
 var answerChoices = document.querySelector('.answers');
@@ -47,7 +49,7 @@ function getQuestion() {
   questionText.textContent = getQuestion.title;
 
   answerChoices.textContent = '';
-  
+
   var answerList = document.createElement('ol');
 
   getQuestion.choices.forEach(function (choice) {
@@ -79,6 +81,16 @@ function checkAnswer(choice, correctChoice) {
 function startQuiz() {
   startBtn.style.display = 'none';
   getQuestion();
+
+  var intervalId = setInterval(function () {
+    if (timeLeft === -1) {
+      clearInterval(intervalId)
+
+    } else {
+    timeEl.textContent = timeLeft;
+    timeLeft--;
+  }
+},1000)
 
 }
 
