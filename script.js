@@ -31,4 +31,9 @@ var questions = [
       choices: ['JavaScript', 'terminal / bash', 'for loops', 'console.log'],
       answer: 'console.log',
     },
-  ];
+  ];var score = 0;
+  var questionNumber = 0;
+  var startBtn = document.querySelector('.start-button');
+  var questionText = document.querySelector('.question-text');
+  var answerChoices = document.querySelector('.answers');
+  var resultsId = document.querySelector('.results');

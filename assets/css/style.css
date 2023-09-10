@@ -1,0 +1,15 @@
+header {
+    display:flex;
+    justify-content:space-between;
+}
+
+section {
+    text-align: center;
+}
+
+section button {
+    height: 30px;
+    background-color: purple;
+    color: white;
+    border-radius: 10px
+}
