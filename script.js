@@ -71,27 +71,46 @@ function checkAnswer(choice, correctChoice) {
   }
   if (choice === correctChoice) {
     resultsId.textContent = right;
+    score = score + 20;
   } else {
     resultsId.textContent = wrong;
     timeLeft = timeLeft - 10;
   }
+  if (questionNumber >= 5) {
+    gameOver();
+
+  }
 }
 
+function gameOver() {
+  questionText.textContent = 'Please enter Initials';
+  answerChoices.textContent = '';
+  resultsId.textContent = 'score is: ' + score;
+}
 
 function startQuiz() {
   startBtn.style.display = 'none';
   getQuestion();
 
   var intervalId = setInterval(function () {
-    if (timeLeft === -1) {
+    if (timeLeft <= 0 || questionNumber >= 5) {
+      timeEl.textContent = 0;
       clearInterval(intervalId)
+      gameOver();
 
     } else {
     timeEl.textContent = timeLeft;
     timeLeft--;
+    checkTimeLeft();
   }
 },1000)
 
+}
+
+function checkTimeLeft() {
+  if (timeLeft <= 0) {
+    gameOver();
+  }
 }
 
 startBtn.addEventListener('click', startQuiz);
