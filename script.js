@@ -1,3 +1,4 @@
+//questions for the quiz
 var questions = [
   {
     title: 'Commonly used data types DO NOT include:',
@@ -33,6 +34,7 @@ var questions = [
   },
 ];
 
+// setting the variables for the code
 var score = 0;
 var questionNumber = 0;
 var timeEl = document.querySelector('.time');
@@ -43,7 +45,9 @@ var answerChoices = document.querySelector('.answers');
 var resultsId = document.querySelector('.results');
 var right = 'Correct!';
 var wrong = 'Wrong!';
+resultsId.style.display = 'none';
 
+//function to get the question to show up
 function getQuestion() {
   var getQuestion = questions[questionNumber];
   questionText.textContent = getQuestion.title;
@@ -64,8 +68,10 @@ function getQuestion() {
 
 }
 
+//function to check the answer
 function checkAnswer(choice, correctChoice) {
   questionNumber++;
+  resultsId.style.display = 'block';
   if (questionNumber < questions.length) {
     getQuestion();
   }
@@ -82,6 +88,7 @@ function checkAnswer(choice, correctChoice) {
   }
 }
 
+//game over function
 function gameOver() {
   questionText.textContent = 'Please enter Initials';
   answerChoices.textContent = '';
@@ -95,6 +102,7 @@ function gameOver() {
   answerChoices.appendChild(submitBox);
 }
 
+//function to start the quiz
 function startQuiz() {
   startBtn.style.display = 'none';
   getQuestion();
@@ -113,7 +121,7 @@ function startQuiz() {
 },1000)
 
 }
-
+//function to check the time left and force a gameover is time reaches 0
 function checkTimeLeft() {
   if (timeLeft <= 0) {
     gameOver();

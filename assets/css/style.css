@@ -1,6 +1,10 @@
+* {
+    background-color: lightblue;
+}
 header {
     display:flex;
     justify-content:space-between;
+    font-size: 150%;
 }
 
 section {
@@ -12,4 +16,9 @@ section button {
     background-color: purple;
     color: white;
     border-radius: 10px
+}
+li {
+    list-style: none;
+    cursor:pointer;
+    padding-bottom: 15px;
 }
