@@ -86,6 +86,13 @@ function gameOver() {
   questionText.textContent = 'Please enter Initials';
   answerChoices.textContent = '';
   resultsId.textContent = 'score is: ' + score;
+  var inputBox = document.createElement('input');
+  inputBox.setAttribute('type','text');
+  inputBox.setAttribute('placeholder', 'Enter initials');
+  answerChoices.appendChild(inputBox);
+  var submitBox = document.createElement('input');
+  submitBox.setAttribute('type', 'submit');
+  answerChoices.appendChild(submitBox);
 }
 
 function startQuiz() {
