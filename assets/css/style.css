@@ -11,14 +11,25 @@ section {
     text-align: center;
 }
 
-section button {
+.start-button {
     height: 30px;
     background-color: purple;
     color: white;
     border-radius: 10px
 }
-li {
-    list-style: none;
-    cursor:pointer;
-    padding-bottom: 15px;
+
+ol {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.answer-list {
+    width: 15%;
+    margin-top: 15px;
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    
 }

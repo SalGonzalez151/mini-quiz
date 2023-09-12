@@ -46,6 +46,8 @@ var resultsId = document.querySelector('.results');
 var right = 'Correct!';
 var wrong = 'Wrong!';
 resultsId.style.display = 'none';
+var inputBox = document.createElement('input');
+var submitBox = document.createElement('input');
 
 //function to get the question to show up
 function getQuestion() {
@@ -57,7 +59,8 @@ function getQuestion() {
   var answerList = document.createElement('ol');
 
   getQuestion.choices.forEach(function (choice) {
-    var listItem = document.createElement('li');
+    var listItem = document.createElement('button');
+    listItem.setAttribute('class','answer-list');
     listItem.textContent = choice;
     listItem.addEventListener('click', function () {
       checkAnswer(choice, getQuestion.answer);
@@ -93,13 +96,12 @@ function gameOver() {
   questionText.textContent = 'Please enter Initials';
   answerChoices.textContent = '';
   resultsId.textContent = 'score is: ' + score;
-  var inputBox = document.createElement('input');
   inputBox.setAttribute('type','text');
   inputBox.setAttribute('placeholder', 'Enter initials');
   answerChoices.appendChild(inputBox);
-  var submitBox = document.createElement('input');
   submitBox.setAttribute('type', 'submit');
   answerChoices.appendChild(submitBox);
+  submitBox.addEventListener('click', highScore);
 }
 
 //function to start the quiz
@@ -119,9 +121,15 @@ function startQuiz() {
     checkTimeLeft();
   }
 },1000)
-
 }
-//function to check the time left and force a gameover is time reaches 0
+
+function highScore() {
+  questionText.textContent = "High scores!"
+  inputBox.remove();
+  submitBox.remove();
+}
+
+//function to check the time left and force a gameover if time reaches 0
 function checkTimeLeft() {
   if (timeLeft <= 0) {
     gameOver();
