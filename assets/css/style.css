@@ -33,3 +33,7 @@ ol {
     cursor: pointer;
     
 }
+
+li {
+    font-size: 150%;
+}

@@ -48,6 +48,9 @@ var wrong = 'Wrong!';
 resultsId.style.display = 'none';
 var inputBox = document.createElement('input');
 var submitBox = document.createElement('input');
+var orderedEl = document.querySelector('.high-scores')
+var viewScoreEl = document.querySelector('#view-scores')
+var scoreText = 'View High Score';
 
 //function to get the question to show up
 function getQuestion() {
@@ -60,7 +63,7 @@ function getQuestion() {
 
   getQuestion.choices.forEach(function (choice) {
     var listItem = document.createElement('button');
-    listItem.setAttribute('class','answer-list');
+    listItem.setAttribute('class', 'answer-list');
     listItem.textContent = choice;
     listItem.addEventListener('click', function () {
       checkAnswer(choice, getQuestion.answer);
@@ -96,7 +99,7 @@ function gameOver() {
   questionText.textContent = 'Please enter Initials';
   answerChoices.textContent = '';
   resultsId.textContent = 'score is: ' + score;
-  inputBox.setAttribute('type','text');
+  inputBox.setAttribute('type', 'text');
   inputBox.setAttribute('placeholder', 'Enter initials');
   answerChoices.appendChild(inputBox);
   submitBox.setAttribute('type', 'submit');
@@ -116,15 +119,32 @@ function startQuiz() {
       gameOver();
 
     } else {
-    timeEl.textContent = timeLeft;
-    timeLeft--;
-    checkTimeLeft();
-  }
-},1000)
+      timeEl.textContent = timeLeft;
+      timeLeft--;
+      checkTimeLeft();
+    }
+  }, 1000)
 }
 
+//function to show the highscores of the quiz
 function highScore() {
-  questionText.textContent = "High scores!"
+  questionText.textContent = "High scores!";
+  submitBox.textContent = score;
+  var showHighScore = JSON.parse(localStorage.getItem('initials')) || [];
+
+  showHighScore.push(inputBox.value + ' = ' + score);
+  localStorage.setItem('initials', JSON.stringify(showHighScore));
+
+  for (i = 0; i < showHighScore.length; i++) {
+    var listEl = document.createElement('li');
+    listEl.textContent = showHighScore[i];
+    orderedEl.appendChild(listEl);
+    
+  }
+
+
+  // resultsId.textContent = showHighScore;
+
   inputBox.remove();
   submitBox.remove();
 }
