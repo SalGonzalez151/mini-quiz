@@ -41,3 +41,14 @@ li {
 .dont-show {
     display:none;
 }
+
+button {
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+}
+
+input {
+    background-color: purple;
+    color: white;
+}

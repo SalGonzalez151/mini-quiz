@@ -128,34 +128,33 @@ function startQuiz() {
   }, 1000)
 }
 
-//function to show the highscores of the quiz
+//function to show the highscores of the quiz and make it require initial
 function highScore() {
   questionText.textContent = "High scores!";
   submitBox.textContent = score;
   var showHighScore = JSON.parse(localStorage.getItem('initials')) || [];
 
   if (inputBox.value === '') {
-    alert("please enter initials");
-    showHighScore = false;
     questionText.textContent = 'Please enter Initials';
+    return;
   }
-
   showHighScore.push(inputBox.value + ' = ' + score);
   localStorage.setItem('initials', JSON.stringify(showHighScore));
+  showScore()
+}
+
+function showScore() {
+  var showHighScore = JSON.parse(localStorage.getItem('initials')) || [];
 
   for (i = 0; i < showHighScore.length; i++) {
     var listEl = document.createElement('li');
     listEl.textContent = showHighScore[i];
     orderedEl.appendChild(listEl);
-    
   }
-
-
   inputBox.classList.add('dont-show');
   submitBox.classList.add('dont-show');
   playAgainEl.classList.remove('dont-show');
   clearStorageEl.classList.remove('dont-show');
-
 }
 
 //function to check the time left and force a gameover if time reaches 0
@@ -165,10 +164,20 @@ function checkTimeLeft() {
   }
 }
 
+//function to play the quiz again
 function playAgain() {
   window.location.reload();
 }
 
+//function to view high scores
+function viewHighScores() {
+  startBtn.remove();
+  answerChoices.remove();
+  showScore();
+  
+}
+
+//function to remove the score
 function clearScore() {
   localStorage.removeItem('initials');
   orderedEl.classList.add('dont-show');
@@ -177,4 +186,4 @@ function clearScore() {
 
 startBtn.addEventListener('click', startQuiz);
 
-viewScoreEl.addEventListener('click', highScore);
+viewScoreEl.addEventListener('click', viewHighScores);
