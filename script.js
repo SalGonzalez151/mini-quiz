@@ -155,6 +155,7 @@ function showScore() {
   submitBox.classList.add('dont-show');
   playAgainEl.classList.remove('dont-show');
   clearStorageEl.classList.remove('dont-show');
+  viewScoreEl.remove();
 }
 
 //function to check the time left and force a gameover if time reaches 0
