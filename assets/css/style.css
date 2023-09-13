@@ -52,3 +52,7 @@ input {
     background-color: purple;
     color: white;
 }
+
+.view-scores {
+    cursor: pointer;
+}
