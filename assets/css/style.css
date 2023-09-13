@@ -37,3 +37,7 @@ ol {
 li {
     font-size: 150%;
 }
+
+.dont-show {
+    display:none;
+}

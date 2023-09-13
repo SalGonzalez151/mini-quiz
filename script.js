@@ -49,8 +49,10 @@ resultsId.style.display = 'none';
 var inputBox = document.createElement('input');
 var submitBox = document.createElement('input');
 var orderedEl = document.querySelector('.high-scores')
-var viewScoreEl = document.querySelector('#view-scores')
+var viewScoreEl = document.querySelector('.view-scores')
 var scoreText = 'View High Score';
+var playAgainEl = document.querySelector('.play-again')
+var clearStorageEl= document.querySelector('.clear-storage')
 
 //function to get the question to show up
 function getQuestion() {
@@ -132,6 +134,12 @@ function highScore() {
   submitBox.textContent = score;
   var showHighScore = JSON.parse(localStorage.getItem('initials')) || [];
 
+  if (inputBox.value === '') {
+    alert("please enter initials");
+    showHighScore = false;
+    questionText.textContent = 'Please enter Initials';
+  }
+
   showHighScore.push(inputBox.value + ' = ' + score);
   localStorage.setItem('initials', JSON.stringify(showHighScore));
 
@@ -143,10 +151,11 @@ function highScore() {
   }
 
 
-  // resultsId.textContent = showHighScore;
+  inputBox.classList.add('dont-show');
+  submitBox.classList.add('dont-show');
+  playAgainEl.classList.remove('dont-show');
+  clearStorageEl.classList.remove('dont-show');
 
-  inputBox.remove();
-  submitBox.remove();
 }
 
 //function to check the time left and force a gameover if time reaches 0
@@ -156,4 +165,16 @@ function checkTimeLeft() {
   }
 }
 
+function playAgain() {
+  window.location.reload();
+}
+
+function clearScore() {
+  localStorage.removeItem('initials');
+  orderedEl.classList.add('dont-show');
+}
+
+
 startBtn.addEventListener('click', startQuiz);
+
+viewScoreEl.addEventListener('click', highScore);
